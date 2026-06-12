@@ -1,62 +1,153 @@
 ---
+import { url } from '../utils/url';
+
 export interface Props {
   title?: string;
   description?: string;
   canonical?: string;
+  ogImage?: string;
 }
 
 const {
   title = 'Distrito PC — Expertos en tecnología, cerca de ti',
   description = 'Tienda de informática en Fuensalida (Toledo). Venta, reparación y servicio técnico para particulares y empresas desde 2012.',
   canonical,
+  ogImage,
 } = Astro.props;
 
-const siteUrl = 'https://www.distritopc.com';
+const siteUrl = 'https://tallerdedigitalizacion.github.io/distrito-pc-demo';
 const canonicalURL = canonical ? `${siteUrl}${canonical}` : siteUrl;
+const ogImageURL = ogImage ? `${siteUrl}${ogImage}` : `${siteUrl}/images/og-image.jpg`;
+
+// Google Analytics — replace with your Measurement ID
+const GA_ID = ''; // e.g. 'G-XXXXXXXXXX'
 ---
 <!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
-    <meta name="theme-color" content="#0e0e13" />
 
-    <!-- Open Graph -->
+    <!-- Primary SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="informática, ordenadores, reparación, servicio técnico, Fuensalida, Toledo, portátiles, piezas, redes, empresas" />
+    <meta name="author" content="Distrito PC" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Distrito PC" />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonicalURL} />
-    <meta property="og:image" content={`${siteUrl}/images/og-image.jpg`} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Distrito PC — Tienda de informática en Fuensalida, Toledo" />
     <meta property="og:locale" content="es_ES" />
 
-    <link rel="canonical" href={canonicalURL} />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+    <meta name="twitter:image:alt" content="Distrito PC — Tienda de informática en Fuensalida, Toledo" />
+
+    <!-- Business / Local SEO structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Distrito PC",
+        "description": "Tienda de informática en Fuensalida (Toledo). Venta, reparación y servicio técnico para particulares y empresas desde 2012.",
+        "url": "https://www.distritopc.com",
+        "telephone": "+34925733019",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "C/ Juan de Ávila 4, local 2",
+          "addressLocality": "Fuensalida",
+          "addressRegion": "Castilla-La Mancha",
+          "postalCode": "45510",
+          "addressCountry": "ES"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "40.0607",
+          "longitude": "-4.2014"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+            "opens": "09:30",
+            "closes": "14:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+            "opens": "17:00",
+            "closes": "20:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Saturday",
+            "opens": "10:00",
+            "closes": "14:00"
+          }
+        ],
+        "image": "https://www.distritopc.com/images/og-image.jpg",
+        "priceRange": "€€",
+        "currenciesAccepted": "EUR",
+        "paymentAccepted": "Cash, Credit Card",
+        "areaServed": "Fuensalida, Toledo, Castilla-La Mancha"
+      }
+    </script>
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href={url('/favicon.ico')} />
+    <link rel="icon" type="image/png" sizes="32x32" href={url('/favicon-32x32.png')} />
+    <link rel="icon" type="image/png" sizes="16x16" href={url('/favicon-16x16.png')} />
+    <link rel="apple-touch-icon" sizes="180x180" href={url('/apple-touch-icon.png')} />
+    <link rel="manifest" href={url('/site.webmanifest')} />
+    <meta name="theme-color" content="#ff5200" />
+    <meta name="msapplication-TileColor" content="#0e0e13" />
+
+    <!-- Google Analytics placeholder -->
+    {GA_ID && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
+        <script is:inline define:vars={{ GA_ID }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', GA_ID);
+        </script>
+      </>
+    )}
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
-
-    <title>{title}</title>
   </head>
   <body>
     <slot />
 
-    <!-- Scroll reveal script -->
+    <!-- Scroll reveal -->
     <script>
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-            }
+            if (entry.isIntersecting) entry.target.classList.add('visible');
           });
         },
         { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
       );
-
       document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     </script>
   </body>
