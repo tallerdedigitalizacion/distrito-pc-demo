@@ -1,0 +1,111 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import { url } from '../utils/url';
+import '../styles/global.css';
+
+const solutions = [
+  {
+    title: 'Sistemas TPV',
+    icon: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>`,
+    items: ['Terminal punto de venta completo', 'Lector de código de barras', 'Caja registradora integrada', 'Software de gestión de stock', 'Impresora de tickets'],
+  },
+  {
+    title: 'Redes e Infraestructura',
+    icon: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="5" r="3"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/><path d="M12 8v7M6.5 17.5L12 15M17.5 17.5L12 15"/></svg>`,
+    items: ['Diseño e instalación de redes LAN', 'Cableado estructurado', 'Configuración de routers y switches', 'WiFi corporativo (APs)', 'VPN y acceso remoto seguro'],
+  },
+  {
+    title: 'Seguridad en la Nube',
+    icon: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>`,
+    items: ['Copias de seguridad automáticas en la nube', 'Acceso a datos desde cualquier dispositivo', 'Configuración de movilidad', 'Auditorías de seguridad informática', 'Recuperación ante desastres'],
+  },
+  {
+    title: 'Software de Gestión',
+    icon: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`,
+    items: ['Software de gestión sectorializado', 'ERP para pequeñas y medianas empresas', 'Gestión de inventario y facturación', 'Integración con impresoras fiscales', 'Formación y soporte continuado'],
+  },
+  {
+    title: 'Mantenimiento Integral',
+    icon: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>`,
+    items: ['Contrato de mantenimiento preventivo', 'Actualizaciones de software y seguridad', 'Asistencia técnica prioritaria', 'Sustitución de equipos en garantía', 'Inventario de activos informáticos'],
+  },
+  {
+    title: 'Consultoría y Formación',
+    icon: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`,
+    items: ['Diagnóstico tecnológico de tu negocio', 'Plan de modernización digital', 'Formación a empleados', 'Asesoramiento en compras tecnológicas', 'Seguimiento y consulta online'],
+  },
+];
+---
+
+<Layout
+  title="Informática para Empresas | Distrito PC — Fuensalida, Toledo"
+  description="Sistemas TPV, redes, software de gestión y mantenimiento informático para pymes en la comarca de La Sagra, Toledo. Presupuesto sin compromiso."
+  canonical="/empresas"
+>
+  <Header />
+  <main>
+
+    <section class="relative pt-32 pb-16 overflow-hidden" style="background: var(--dpc-surface);">
+      <div class="absolute inset-0 bg-grid-orange opacity-50" style="background-size: 50px 50px;" aria-hidden="true"></div>
+      <div class="section-container relative z-10">
+        <nav class="flex items-center gap-2 text-dpc-muted mb-6" style="font-size: 0.82rem;">
+          <a href={url('/')} class="hover:text-dpc-orange2 transition-colors">Inicio</a>
+          <span>›</span>
+          <span class="text-dpc-text">Empresas</span>
+        </nav>
+        <div class="section-tag">Para empresas</div>
+        <h1 class="font-heading font-bold" style="font-size: clamp(2.2rem, 5vw, 3.5rem); margin-top: 0.5rem;">
+          Tecnología al servicio<br /><span class="gradient-text">de tu negocio.</span>
+        </h1>
+        <p class="text-dpc-muted mt-4" style="max-width: 580px; font-size: 1.05rem; line-height: 1.7;">
+          Desde la instalación de tu red hasta la implantación de un sistema TPV o la gestión de tus datos en la nube. Cubrimos todas las necesidades tecnológicas de tu empresa.
+        </p>
+        <div class="flex flex-wrap gap-4 mt-8">
+          <a href={url('/contacto')} class="btn-primary"><span>Solicitar presupuesto</span></a>
+          <a href="tel:925733019" class="btn-secondary">925 73 30 19</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 md:py-24" style="background: var(--dpc-black);">
+      <div class="section-container">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {solutions.map((s, i) => (
+            <div class="service-card reveal" style={`transition-delay: ${0.06 * i}s;`}>
+              <div class="service-icon text-dpc-orange" set:html={s.icon} />
+              <h2 class="font-heading font-bold text-dpc-text" style="font-size: 1.25rem; margin-bottom: 0.8rem;">{s.title}</h2>
+              <ul class="flex flex-col gap-1.5">
+                {s.items.map((item) => (
+                  <li class="flex items-start gap-2 text-dpc-muted" style="font-size: 0.88rem;">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-dpc-orange flex-shrink-0 mt-0.5"><path d="M20 6L9 17l-5-5"/></svg>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-14 p-8 md:p-12 rounded-xl reveal" style="background: linear-gradient(135deg, rgba(255,82,0,0.12) 0%, var(--dpc-surface) 100%); border: 1px solid rgba(255,82,0,0.2);">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+            <div>
+              <h3 class="font-heading font-bold text-dpc-text" style="font-size: 1.6rem; margin-bottom: 0.6rem;">¿Tienes un negocio en la comarca?</h3>
+              <p class="text-dpc-muted" style="font-size: 0.95rem; line-height: 1.65;">
+                Cuéntanos tus necesidades y te preparamos un presupuesto personalizado sin compromiso. Atendemos comercios, hostelería, clínicas, despachos y todo tipo de pymes.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-3">
+              <a href={url('/contacto')} class="btn-primary">Pedir presupuesto</a>
+              <a href="tel:925733019" class="btn-secondary">Llamar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <WhatsAppButton />
+</Layout>

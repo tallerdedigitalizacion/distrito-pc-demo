@@ -1,0 +1,169 @@
+---
+import { url } from '../utils/url';
+
+const year = new Date().getFullYear();
+
+const links = {
+  servicios: [
+    { label: 'Reparación y Actualización', href: url('/servicio-tecnico') },
+    { label: 'Venta de Equipos',            href: url('/informatica') },
+    { label: 'Informática para Empresas',   href: url('/empresas') },
+    { label: 'Asistencia Remota',           href: url('/servicio-tecnico') },
+    { label: 'Seguridad y Nube',            href: url('/empresas') },
+    { label: 'Consumibles',                 href: url('/informatica') },
+  ],
+  empresa: [
+    { label: 'Nosotros',                href: url('/nosotros') },
+    { label: 'Contacto',               href: url('/contacto') },
+    { label: 'Aviso legal',            href: url('/legal') },
+    { label: 'Política de privacidad', href: url('/privacidad') },
+  ],
+};
+---
+
+<footer style="background: var(--dpc-surface); border-top: 1px solid var(--dpc-border);">
+  <div class="section-container py-14">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+
+      <!-- Brand col -->
+      <div class="lg:col-span-1">
+        <a href={url('/')} class="inline-block mb-4">
+          <img src={url('/images/logo.jpg')} alt="Distrito PC" class="h-10 w-auto" />
+        </a>
+        <p class="text-dpc-muted" style="font-size: 0.88rem; line-height: 1.7; max-width: 240px;">
+          Expertos en tecnología, cerca de ti. Tu tienda de informática en Fuensalida desde 2012.
+        </p>
+        <div class="mt-5 flex flex-col gap-2">
+          <a href="tel:925733019" class="flex items-center gap-2 text-dpc-muted hover:text-dpc-orange2 transition-colors" style="font-size: 0.88rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+            </svg>
+            925 73 30 19
+          </a>
+          <a href="tel:667515207" class="flex items-center gap-2 text-dpc-muted hover:text-dpc-orange2 transition-colors" style="font-size: 0.88rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
+            </svg>
+            667 51 52 07
+          </a>
+          <a href="mailto:consulta@distritopc.com" class="flex items-center gap-2 text-dpc-muted hover:text-dpc-orange2 transition-colors" style="font-size: 0.88rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+            </svg>
+            consulta@distritopc.com
+          </a>
+          <div class="flex items-start gap-2 text-dpc-muted" style="font-size: 0.88rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink: 0; margin-top: 2px;">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/>
+            </svg>
+            C/ Juan de Ávila 4, local 2<br />45510 - Fuensalida (Toledo)
+          </div>
+        </div>
+      </div>
+
+      <!-- Servicios -->
+      <div>
+        <h4
+          class="font-heading font-bold text-dpc-text"
+          style="font-size: 1rem; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1rem;"
+        >
+          Servicios
+        </h4>
+        <ul class="flex flex-col gap-2">
+          {links.servicios.map((l) => (
+            <li>
+              <a
+                href={l.href}
+                class="text-dpc-muted hover:text-dpc-orange2 transition-colors"
+                style="font-size: 0.88rem;"
+              >
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Empresa -->
+      <div>
+        <h4
+          class="font-heading font-bold text-dpc-text"
+          style="font-size: 1rem; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1rem;"
+        >
+          Empresa
+        </h4>
+        <ul class="flex flex-col gap-2">
+          {links.empresa.map((l) => (
+            <li>
+              <a
+                href={l.href}
+                class="text-dpc-muted hover:text-dpc-orange2 transition-colors"
+                style="font-size: 0.88rem;"
+              >
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Horario -->
+      <div>
+        <h4
+          class="font-heading font-bold text-dpc-text"
+          style="font-size: 1rem; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1rem;"
+        >
+          Horario
+        </h4>
+        <div class="flex flex-col gap-2">
+          {[
+            { days: 'Lunes – Viernes', hours: '09:30 – 14:00 / 17:00 – 20:00' },
+            { days: 'Sábados',         hours: '10:00 – 14:00' },
+            { days: 'Domingos',        hours: 'Cerrado' },
+          ].map((h) => (
+            <div>
+              <div class="font-heading font-600 text-dpc-text" style="font-size: 0.85rem;">{h.days}</div>
+              <div class="text-dpc-muted" style="font-size: 0.82rem;">{h.hours}</div>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-6">
+          <h4
+            class="font-heading font-bold text-dpc-text"
+            style="font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.7rem;"
+          >
+            Síguenos
+          </h4>
+          <div class="flex gap-3">
+            <a
+              href="https://facebook.com/distritopc"
+              target="_blank"
+              rel="noopener"
+              class="w-9 h-9 rounded-md flex items-center justify-center text-dpc-muted hover:text-dpc-orange2 hover:bg-dpc-surface2 transition-all"
+              style="border: 1px solid var(--dpc-border);"
+              aria-label="Facebook"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div
+    class="section-container py-5 flex flex-col sm:flex-row justify-between items-center gap-3"
+    style="border-top: 1px solid var(--dpc-border);"
+  >
+    <p class="text-dpc-muted" style="font-size: 0.8rem;">
+      © {year} Distrito PC · Fuensalida, Toledo · Todos los derechos reservados
+    </p>
+    <p class="text-dpc-muted" style="font-size: 0.8rem;">
+      Abiertos desde diciembre de 2012
+    </p>
+  </div>
+</footer>

@@ -1,0 +1,26 @@
+---
+const brands = [
+  'Intel', 'AMD', 'NVIDIA', 'HP', 'Lenovo', 'ASUS', 'MSI',
+  'Gigabyte', 'Samsung', 'Seagate', 'Western Digital', 'Fujitsu',
+  'Kingston', 'Corsair', 'LG', 'Brother', 'Epson', 'Canon',
+];
+// Duplicate for seamless loop
+const allBrands = [...brands, ...brands];
+---
+
+<div
+  class="py-8 overflow-hidden"
+  style="background: var(--dpc-surface); border-top: 1px solid #28283c; border-bottom: 1px solid #28283c;"
+  aria-hidden="true"
+>
+  <div class="flex gap-10 animate-marquee" style="width: max-content;">
+    {allBrands.map((b) => (
+      <span
+        class="font-heading font-bold text-dpc-muted whitespace-nowrap select-none"
+        style="font-size: 1.05rem; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s;"
+      >
+        {b}
+      </span>
+    ))}
+  </div>
+</div>

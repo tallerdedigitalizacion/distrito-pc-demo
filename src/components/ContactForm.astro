@@ -1,0 +1,138 @@
+---
+import { url } from '../utils/url';
+
+const apiUrl = import.meta.env.PUBLIC_CONTACT_API_URL ?? '/api/contact';
+---
+
+<form
+  id="contact-form"
+  class="flex flex-col gap-5"
+  novalidate
+  data-api-url={apiUrl}
+>
+  <!-- Honeypot (anti-spam, oculto para usuarios) -->
+  <div style="display: none;" aria-hidden="true">
+    <input type="text" name="website" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+    <div class="form-group">
+      <label for="nombre" class="form-label">Nombre *</label>
+      <input type="text" id="nombre" name="nombre" class="form-input" placeholder="Tu nombre" required autocomplete="given-name" />
+    </div>
+    <div class="form-group">
+      <label for="apellidos" class="form-label">Apellidos *</label>
+      <input type="text" id="apellidos" name="apellidos" class="form-input" placeholder="Tus apellidos" required autocomplete="family-name" />
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+    <div class="form-group">
+      <label for="email" class="form-label">Correo electrónico *</label>
+      <input type="email" id="email" name="email" class="form-input" placeholder="tu@correo.com" required autocomplete="email" />
+    </div>
+    <div class="form-group">
+      <label for="telefono" class="form-label">Teléfono</label>
+      <input type="tel" id="telefono" name="telefono" class="form-input" placeholder="600 000 000" autocomplete="tel" />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="asunto" class="form-label">Asunto *</label>
+    <input type="text" id="asunto" name="asunto" class="form-input" placeholder="¿En qué podemos ayudarte?" required />
+  </div>
+
+  <div class="form-group">
+    <label for="mensaje" class="form-label">Mensaje *</label>
+    <textarea id="mensaje" name="mensaje" class="form-textarea" placeholder="Cuéntanos más sobre tu consulta..." required></textarea>
+  </div>
+
+  <label class="flex items-start gap-3 cursor-pointer group">
+    <input
+      type="checkbox"
+      id="privacidad"
+      name="privacidad"
+      class="mt-1 flex-shrink-0"
+      required
+      style="width: 16px; height: 16px; accent-color: var(--dpc-orange); cursor: pointer;"
+    />
+    <span class="text-dpc-muted" style="font-size: 0.85rem; line-height: 1.6;">
+      Acepto el tratamiento de mis datos personales para responder a esta consulta,
+      conforme a la <a href={url('/privacidad')} class="text-dpc-orange2 hover:underline">política de privacidad</a>. *
+    </span>
+  </label>
+
+  <div id="form-error" class="hidden rounded-md p-4" style="background: rgba(230,34,0,0.1); border: 1px solid rgba(230,34,0,0.3); color: #ff7755; font-size: 0.9rem;"></div>
+  <div id="form-success" class="hidden rounded-md p-4" style="background: rgba(0,221,136,0.1); border: 1px solid rgba(0,221,136,0.3); color: #00dd88; font-size: 0.9rem;"></div>
+
+  <button type="submit" id="submit-btn" class="btn-primary self-start">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+    </svg>
+    <span id="submit-label">Enviar mensaje</span>
+  </button>
+</form>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const errorBox = document.getElementById('form-error') as HTMLDivElement;
+  const successBox = document.getElementById('form-success') as HTMLDivElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const submitLabel = document.getElementById('submit-label') as HTMLSpanElement;
+  const apiUrl = form?.dataset.apiUrl ?? '/api/contact';
+
+  function showError(msg: string) {
+    errorBox.textContent = msg;
+    errorBox.classList.remove('hidden');
+    successBox.classList.add('hidden');
+  }
+
+  function showSuccess(msg: string) {
+    successBox.textContent = msg;
+    successBox.classList.remove('hidden');
+    errorBox.classList.add('hidden');
+    form.reset();
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const honey = (form.querySelector('input[name="website"]') as HTMLInputElement)?.value;
+    if (honey) return;
+
+    const data = Object.fromEntries(new FormData(form));
+
+    if (!data.nombre || !data.apellidos || !data.email || !data.asunto || !data.mensaje) {
+      showError('Por favor, completa todos los campos obligatorios.');
+      return;
+    }
+
+    if (!data.privacidad) {
+      showError('Debes aceptar la política de privacidad para enviar el formulario.');
+      return;
+    }
+
+    submitLabel.textContent = 'Enviando...';
+    submitBtn.disabled = true;
+
+    try {
+      const res = await fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error((err as {message?: string}).message ?? 'Error al enviar el mensaje.');
+      }
+
+      showSuccess('¡Mensaje enviado correctamente! Te responderemos lo antes posible.');
+    } catch (err) {
+      showError(err instanceof Error ? err.message : 'Error inesperado. Por favor, inténtalo de nuevo o llámanos directamente.');
+    } finally {
+      submitLabel.textContent = 'Enviar mensaje';
+      submitBtn.disabled = false;
+    }
+  });
+</script>

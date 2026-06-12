@@ -1,0 +1,144 @@
+---
+import { url } from '../utils/url';
+
+const products = [
+  {
+    name: 'Lenovo ThinkCentre M83',
+    badge: 'refu',
+    badgeLabel: 'Reacondicionado',
+    specs: [
+      { k: 'CPU',         v: 'Intel Core i5-4570' },
+      { k: 'RAM',         v: '8 GB DDR3' },
+      { k: 'Almacenam.',  v: '240 GB SSD' },
+      { k: 'Sistema',     v: 'Windows 11 Pro' },
+      { k: 'Formato',     v: 'Minitorre' },
+    ],
+    highlight: false,
+  },
+  {
+    name: 'HP ProDesk 600 G1',
+    badge: 'refu',
+    badgeLabel: 'Reacondicionado',
+    specs: [
+      { k: 'CPU',         v: 'Intel Core i5-4570' },
+      { k: 'RAM',         v: '8 GB DDR3' },
+      { k: 'Almacenam.',  v: '500 GB HDD' },
+      { k: 'Sistema',     v: 'Windows 11 Pro' },
+      { k: 'Formato',     v: 'Minitorre' },
+    ],
+    highlight: false,
+  },
+  {
+    name: 'Lenovo ThinkCentre M93p',
+    badge: 'refu',
+    badgeLabel: 'Reacondicionado',
+    specs: [
+      { k: 'CPU',         v: 'Intel Core i7-4770' },
+      { k: 'RAM',         v: '8 GB DDR3' },
+      { k: 'Almacenam.',  v: '240 GB SSD' },
+      { k: 'Sistema',     v: 'Windows 11 Pro' },
+      { k: 'Formato',     v: 'Minitorre' },
+    ],
+    highlight: true,
+  },
+  {
+    name: 'HP ProBook 430 G1',
+    badge: 'refu',
+    badgeLabel: 'Reacondicionado',
+    specs: [
+      { k: 'CPU',         v: 'Intel Core i5-4200U' },
+      { k: 'RAM',         v: '8 GB DDR3L' },
+      { k: 'Almacenam.',  v: '240 GB SSD' },
+      { k: 'Sistema',     v: 'Windows 11 Pro' },
+      { k: 'Formato',     v: 'Portátil 13,3"' },
+    ],
+    highlight: false,
+  },
+  {
+    name: 'PC Ensamblado Gigabyte',
+    badge: 'new',
+    badgeLabel: 'Nuevo',
+    specs: [
+      { k: 'CPU',         v: 'AMD Ryzen 5 4600G' },
+      { k: 'RAM',         v: '16 GB DDR4' },
+      { k: 'Almacenam.',  v: '480 GB SSD' },
+      { k: 'Gráfica',     v: 'AMD Radeon Vega 7' },
+      { k: 'Formato',     v: 'Torre ATX' },
+    ],
+    highlight: false,
+  },
+];
+---
+
+<section id="stock" class="py-20 md:py-28" style="background: var(--dpc-black);">
+  <div class="section-container">
+
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+      <div>
+        <div class="section-tag reveal">Stock disponible</div>
+        <h2
+          class="font-heading font-bold reveal"
+          style="font-size: clamp(2rem, 4vw, 3rem); transition-delay: 0.1s;"
+        >
+          Equipos listos<br />
+          <span class="gradient-text">para llevar.</span>
+        </h2>
+      </div>
+      <p
+        class="text-dpc-muted reveal md:text-right"
+        style="max-width: 300px; font-size: 0.9rem; line-height: 1.6; transition-delay: 0.15s;"
+      >
+        Stock en constante rotación. Consúltanos disponibilidad y precios actualizados.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+      {products.map((p, i) => (
+        <div
+          class:list={['product-card reveal', p.highlight ? 'ring-1 ring-dpc-orange' : '']}
+          style={`transition-delay: ${0.07 * i}s; ${p.highlight ? 'background: #1a1014;' : ''}`}
+        >
+          <div class="flex items-start justify-between gap-2 mb-3">
+            <h3
+              class="font-heading font-bold text-dpc-text"
+              style="font-size: 1rem; line-height: 1.25;"
+            >
+              {p.name}
+            </h3>
+            <span class:list={['badge flex-shrink-0', p.badge === 'refu' ? 'badge-refu' : 'badge-new']}>
+              {p.badgeLabel}
+            </span>
+          </div>
+
+          <div class="mb-4">
+            {p.specs.map((spec) => (
+              <div class="spec-row">
+                <span class="spec-key">{spec.k}</span>
+                <span class="spec-val">{spec.v}</span>
+              </div>
+            ))}
+          </div>
+
+          <a
+            href={url('/contacto')}
+            class="block text-center btn-primary w-full"
+            style="font-size: 0.85rem; padding: 0.55rem 1rem;"
+          >
+            <span>Consultar precio</span>
+          </a>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center mt-10 reveal">
+      <p class="text-dpc-muted text-sm mb-4">¿Buscas algo más específico? Cuéntanos y lo gestionamos.</p>
+      <a href={url('/contacto')} class="btn-secondary">
+        Consultar disponibilidad
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</section>

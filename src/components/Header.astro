@@ -1,0 +1,129 @@
+---
+import { url } from '../utils/url';
+
+const navLinks = [
+  { label: 'Inicio',           href: url('/') },
+  { label: 'Informática',      href: url('/informatica') },
+  { label: 'Servicio Técnico', href: url('/servicio-tecnico') },
+  { label: 'Empresas',         href: url('/empresas') },
+  { label: 'Nosotros',         href: url('/nosotros') },
+  { label: 'Contacto',         href: url('/contacto') },
+];
+
+const { pathname } = Astro.url;
+---
+
+<header
+  id="site-header"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+  style="background: transparent;"
+>
+  <div class="section-container">
+    <nav class="flex items-center justify-between h-16 md:h-20">
+
+      <!-- Logo -->
+      <a href={url('/')} class="flex items-center gap-3 flex-shrink-0" aria-label="Distrito PC - Inicio">
+        <img
+          src={url('/images/logo.jpg')}
+          alt="Distrito PC"
+          class="h-10 md:h-12 w-auto object-contain"
+          width="160"
+          height="48"
+        />
+      </a>
+
+      <!-- Desktop Nav -->
+      <ul class="hidden lg:flex items-center gap-1">
+        {navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class:list={[
+                'px-3 py-2 rounded-md font-heading text-sm font-600 uppercase tracking-wide transition-colors duration-150',
+                pathname === link.href || (link.href !== url('/') && pathname.startsWith(link.href))
+                  ? 'text-dpc-orange2 bg-dpc-surface'
+                  : 'text-dpc-muted hover:text-dpc-text hover:bg-dpc-surface',
+              ]}
+              style="font-family: 'Rajdhani', sans-serif; letter-spacing: 0.05em;"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <!-- Phone CTA + Burger -->
+      <div class="flex items-center gap-3">
+        <a
+          href="tel:925733019"
+          class="hidden md:inline-flex items-center gap-2 btn-primary text-sm"
+          aria-label="Llamar a Distrito PC"
+        >
+          <span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+            </svg>
+          </span>
+          <span>925 73 30 19</span>
+        </a>
+
+        <!-- Mobile burger -->
+        <button
+          id="burger-btn"
+          class="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 rounded-md border border-dpc-border bg-dpc-surface"
+          aria-label="Abrir menú"
+        >
+          <span class="burger-line block w-5 h-0.5 bg-dpc-text transition-all duration-200"></span>
+          <span class="burger-line block w-5 h-0.5 bg-dpc-text transition-all duration-200"></span>
+          <span class="burger-line block w-5 h-0.5 bg-dpc-text transition-all duration-200"></span>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- Mobile Nav Overlay -->
+<nav id="mobile-nav" class="mobile-nav" aria-hidden="true">
+  {navLinks.map((link) => (
+    <a href={link.href} class="mobile-nav-link">{link.label}</a>
+  ))}
+  <a href="tel:925733019" class="btn-primary mt-4 self-start">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+    </svg>
+    <span>925 73 30 19</span>
+  </a>
+</nav>
+
+<script>
+  // Sticky header scroll effect
+  const header = document.getElementById('site-header');
+  let scrolled = false;
+
+  window.addEventListener('scroll', () => {
+    const isScrolled = window.scrollY > 20;
+    if (isScrolled !== scrolled) {
+      scrolled = isScrolled;
+      header?.classList.toggle('header-scrolled', isScrolled);
+    }
+  }, { passive: true });
+
+  // Mobile nav toggle
+  const burgerBtn = document.getElementById('burger-btn');
+  const mobileNav = document.getElementById('mobile-nav');
+
+  burgerBtn?.addEventListener('click', () => {
+    const isOpen = mobileNav?.classList.contains('open');
+    mobileNav?.classList.toggle('open');
+    mobileNav?.setAttribute('aria-hidden', String(isOpen));
+    document.body.style.overflow = isOpen ? '' : 'hidden';
+  });
+
+  mobileNav?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      mobileNav.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    });
+  });
+</script>

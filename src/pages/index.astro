@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import Hero from '../components/Hero.astro';
+import ServicesSection from '../components/ServicesSection.astro';
+import StockSection from '../components/StockSection.astro';
+import BrandsSection from '../components/BrandsSection.astro';
+import WhyUsSection from '../components/WhyUsSection.astro';
+import ContactSection from '../components/ContactSection.astro';
+import '../styles/global.css';
+---
+
+<Layout>
+  <Header />
+  <main>
+    <Hero />
+    <BrandsSection />
+    <ServicesSection />
+    <StockSection />
+    <WhyUsSection />
+    <ContactSection />
+  </main>
+  <Footer />
+  <WhatsAppButton />
+</Layout>

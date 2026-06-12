@@ -1,0 +1,103 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import { url } from '../utils/url';
+import '../styles/global.css';
+
+const milestones = [
+  { year: '2012', text: 'Abrimos Distrito PC en diciembre, en Fuensalida (Toledo), con el objetivo de ofrecer un servicio técnico de calidad y accesible a toda la comarca.' },
+  { year: '2014', text: 'Ampliamos servicios para empresas: instalación de redes, configuración de sistemas TPV y mantenimiento informático para pymes.' },
+  { year: '2016', text: 'Incorporamos soluciones de seguridad en la nube y acceso remoto a datos, adelantándonos a las necesidades de la movilidad empresarial.' },
+  { year: '2020', text: 'Durante la pandemia, multiplicamos el servicio de asistencia técnica remota para mantener activos a particulares y negocios de la comarca.' },
+  { year: '2023', text: 'Más de 10 años de experiencia. Seguimos creciendo con los mismos valores: honestidad, calidad y trato cercano.' },
+];
+---
+
+<Layout
+  title="Nosotros | Distrito PC — Tienda de informática en Fuensalida desde 2012"
+  description="Conoce a Distrito PC, tu tienda de informática de confianza en Fuensalida, Toledo. Más de 12 años de experiencia en servicio técnico y venta de equipos."
+  canonical="/nosotros"
+>
+  <Header />
+  <main>
+
+    <section class="relative pt-32 pb-16 overflow-hidden" style="background: var(--dpc-surface);">
+      <div class="absolute inset-0 bg-grid-orange opacity-50" style="background-size: 50px 50px;" aria-hidden="true"></div>
+      <div class="section-container relative z-10">
+        <nav class="flex items-center gap-2 text-dpc-muted mb-6" style="font-size: 0.82rem;">
+          <a href={url('/')} class="hover:text-dpc-orange2 transition-colors">Inicio</a>
+          <span>›</span>
+          <span class="text-dpc-text">Nosotros</span>
+        </nav>
+        <div class="section-tag">Quiénes somos</div>
+        <h1 class="font-heading font-bold" style="font-size: clamp(2.2rem, 5vw, 3.5rem); margin-top: 0.5rem;">
+          La tecnología con el<br /><span class="gradient-text">trato de siempre.</span>
+        </h1>
+      </div>
+    </section>
+
+    <section class="py-16 md:py-24" style="background: var(--dpc-black);">
+      <div class="section-container">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
+
+          <div>
+            <h2 class="font-heading font-bold text-dpc-text reveal" style="font-size: 1.9rem; margin-bottom: 1.2rem;">Somos Distrito PC</h2>
+            <div class="flex flex-col gap-4 text-dpc-muted reveal" style="font-size: 0.97rem; line-height: 1.8; transition-delay: 0.1s;">
+              <p>Nacimos en diciembre de 2012 en Fuensalida (Toledo) con un objetivo claro: ofrecer un servicio técnico profesional y honesto, al alcance de las personas y los negocios de nuestra comarca.</p>
+              <p>Nos especializamos en todo lo relacionado con la informática: desde la venta de equipos nuevos y reacondicionados hasta la instalación y mantenimiento de redes empresariales, sistemas TPV, soluciones en la nube y auditorías de seguridad.</p>
+              <p>Lo que nos diferencia es la forma en que trabajamos. Antes de tocar nada, te explicamos qué tiene tu equipo y te damos un presupuesto claro, sin sorpresas. Usamos piezas de calidad y garantizamos todos nuestros trabajos.</p>
+              <p>Somos de aquí. Conocemos las necesidades reales de los vecinos y los negocios de la comarca. Y eso se nota en el trato.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8 reveal" style="transition-delay: 0.2s;">
+              {[
+                { icon: '🔒', title: 'Honestidad', desc: 'Presupuesto previo siempre. Sin sorpresas.' },
+                { icon: '⚡', title: 'Eficiencia', desc: 'Diagnóstico el mismo día en la mayoría de casos.' },
+                { icon: '🛡️', title: 'Garantía', desc: 'Todos nuestros trabajos tienen garantía.' },
+                { icon: '🤝', title: 'Cercanía', desc: 'Trato personal, sin tecnicismos innecesarios.' },
+              ].map((v) => (
+                <div style="background: var(--dpc-surface); border: 1px solid var(--dpc-border); border-radius: 10px; padding: 1.2rem;">
+                  <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">{v.icon}</div>
+                  <div class="font-heading font-bold text-dpc-text" style="font-size: 1rem; margin-bottom: 0.25rem;">{v.title}</div>
+                  <div class="text-dpc-muted" style="font-size: 0.85rem;">{v.desc}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div class="reveal" style="transition-delay: 0.15s;">
+            <h3 class="font-heading font-bold text-dpc-text" style="font-size: 1.3rem; margin-bottom: 1.5rem;">Nuestra historia</h3>
+            <div class="flex flex-col gap-0">
+              {milestones.map((m, i) => (
+                <div class="flex gap-4">
+                  <div class="flex flex-col items-center">
+                    <div style="width: 36px; height: 36px; background: rgba(255,82,0,0.12); border: 1px solid rgba(255,82,0,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                      <span class="gradient-text font-heading font-bold" style="font-size: 0.65rem;">{m.year}</span>
+                    </div>
+                    {i < milestones.length - 1 && (
+                      <div style="width: 1px; flex: 1; background: var(--dpc-border); margin: 4px 0;"></div>
+                    )}
+                  </div>
+                  <div style={`padding-bottom: ${i < milestones.length - 1 ? '1.5rem' : '0'};`}>
+                    <div class="font-heading font-bold gradient-text" style="font-size: 0.9rem; margin-bottom: 0.3rem;">{m.year}</div>
+                    <p class="text-dpc-muted" style="font-size: 0.88rem; line-height: 1.65;">{m.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-14 p-6 rounded-xl reveal" style="background: var(--dpc-surface); border: 1px dashed var(--dpc-border); text-align: center;">
+          <p class="text-dpc-muted" style="font-size: 0.88rem;">
+            📸 Aquí iría una foto de la tienda o del equipo. Ver <code style="background: var(--dpc-surface2); padding: 0.1em 0.4em; border-radius: 3px; font-size: 0.82rem;">IMAGE_PROMPTS.md</code> para los prompts de generación.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <WhatsAppButton />
+</Layout>

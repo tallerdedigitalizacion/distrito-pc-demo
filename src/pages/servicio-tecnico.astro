@@ -1,0 +1,116 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import { url } from '../utils/url';
+import '../styles/global.css';
+
+const services = [
+  {
+    id: 'diagnostico',
+    title: 'Diagnóstico y Reparación',
+    desc: 'Identificamos el problema de tu equipo y te damos un presupuesto detallado antes de realizar ninguna reparación. Trabajamos con piezas de calidad y garantizamos nuestros trabajos.',
+    items: ['Diagnóstico gratuito con presupuesto previo', 'Reparación de placas base, fuentes de alimentación y cargadores', 'Sustitución de pantallas en portátiles', 'Reparación de conectores y puertos USB/HDMI', 'Revisión y limpieza interna antipolvos'],
+  },
+  {
+    id: 'actualizacion',
+    title: 'Actualización de Equipos',
+    desc: 'Exprime tu equipo actual sin comprar uno nuevo. Aumentamos la RAM, instalamos un SSD para mayor velocidad o mejoramos la tarjeta gráfica, siempre sin pérdida de datos.',
+    items: ['Ampliación de memoria RAM', 'Instalación y migración a SSD', 'Mejora de tarjeta gráfica', 'Asesoramiento sobre viabilidad de la actualización', 'Reciclaje responsable de componentes antiguos'],
+  },
+  {
+    id: 'software',
+    title: 'Servicio de Software',
+    desc: 'Instalación de sistemas operativos, drivers, programas antivirus y configuración completa de tu equipo para que funcione de forma óptima desde el primer momento.',
+    items: ['Instalación limpia de Windows 10/11', 'Instalación y actualización de drivers', 'Configuración de impresoras y periféricos', 'Eliminación de virus, malware y ransomware', 'Optimización y limpieza del sistema'],
+  },
+  {
+    id: 'remota',
+    title: 'Asistencia Técnica Remota',
+    desc: 'Resolvemos muchos problemas de software sin que tengas que desplazarte. Nos conectamos de forma segura a tu equipo y solucionamos el problema en el momento.',
+    items: ['Conexión remota segura y autorizada', 'Resolución de problemas de software', 'Instalación y configuración de programas', 'Recuperación de contraseñas y configuraciones', 'Disponible para particulares y empresas'],
+  },
+];
+---
+
+<Layout
+  title="Servicio Técnico | Distrito PC — Reparación de ordenadores en Fuensalida"
+  description="Servicio técnico profesional para ordenadores, portátiles y tablets en Fuensalida (Toledo). Diagnóstico gratuito, presupuesto sin compromiso."
+  canonical="/servicio-tecnico"
+>
+  <Header />
+  <main>
+
+    <section class="relative pt-32 pb-16 overflow-hidden" style="background: var(--dpc-surface);">
+      <div class="absolute inset-0 bg-grid-orange opacity-50" style="background-size: 50px 50px;" aria-hidden="true"></div>
+      <div class="absolute inset-0" style="background: radial-gradient(ellipse at 90% 20%, rgba(255,82,0,0.12) 0%, transparent 50%);" aria-hidden="true"></div>
+      <div class="section-container relative z-10">
+        <nav class="flex items-center gap-2 text-dpc-muted mb-6" style="font-size: 0.82rem;">
+          <a href={url('/')} class="hover:text-dpc-orange2 transition-colors">Inicio</a>
+          <span>›</span>
+          <span class="text-dpc-text">Servicio Técnico</span>
+        </nav>
+        <div class="section-tag">Servicio Técnico</div>
+        <h1 class="font-heading font-bold" style="font-size: clamp(2.2rem, 5vw, 3.5rem); margin-top: 0.5rem;">
+          Tu equipo en buenas<br /><span class="gradient-text">manos.</span>
+        </h1>
+        <p class="text-dpc-muted mt-4" style="max-width: 560px; font-size: 1.05rem; line-height: 1.7;">
+          Reparamos, actualizamos y optimizamos todo tipo de equipos informáticos.
+          Diagnóstico gratuito y presupuesto sin compromiso antes de empezar.
+        </p>
+        <div class="flex flex-wrap gap-4 mt-8">
+          <a href="tel:925733019" class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            <span>Llamar ahora</span>
+          </a>
+          <a href={url('/contacto')} class="btn-secondary">Pedir cita</a>
+        </div>
+        <div class="flex flex-wrap gap-6 mt-10">
+          {['Diagnóstico gratuito', 'Presupuesto previo', 'Garantía en reparaciones'].map((h) => (
+            <div class="flex items-center gap-2 text-dpc-text" style="font-size: 0.9rem;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-dpc-orange"><path d="M20 6L9 17l-5-5"/></svg>
+              {h}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 md:py-24" style="background: var(--dpc-black);">
+      <div class="section-container">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {services.map((s, i) => (
+            <div id={s.id} class="service-card reveal" style={`transition-delay: ${0.07 * i}s;`}>
+              <h2 class="font-heading font-bold text-dpc-text" style="font-size: 1.35rem; margin-bottom: 0.7rem;">{s.title}</h2>
+              <p class="text-dpc-muted" style="font-size: 0.92rem; line-height: 1.65; margin-bottom: 1.2rem;">{s.desc}</p>
+              <ul class="flex flex-col gap-1.5">
+                {s.items.map((item) => (
+                  <li class="flex items-start gap-2 text-dpc-muted" style="font-size: 0.88rem;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-dpc-orange flex-shrink-0 mt-0.5"><path d="M20 6L9 17l-5-5"/></svg>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-14 rounded-xl p-8 reveal" style="background: var(--dpc-surface); border: 1px solid var(--dpc-border); background-image: radial-gradient(ellipse at 90% 50%, rgba(255,82,0,0.06) 0%, transparent 60%);">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+            <div>
+              <h3 class="font-heading font-bold text-dpc-text" style="font-size: 1.5rem; margin-bottom: 0.6rem;">¿Tu equipo no arranca o va muy lento?</h3>
+              <p class="text-dpc-muted" style="font-size: 0.92rem; line-height: 1.65;">Tráelo a la tienda o llámanos. En la mayoría de los casos podemos darte un diagnóstico el mismo día.</p>
+            </div>
+            <div class="flex flex-wrap gap-3">
+              <a href="tel:925733019" class="btn-primary">Llamar: 925 73 30 19</a>
+              <a href={url('/contacto')} class="btn-secondary">Escribirnos</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <WhatsAppButton />
+</Layout>

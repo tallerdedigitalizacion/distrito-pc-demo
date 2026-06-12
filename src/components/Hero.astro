@@ -1,0 +1,117 @@
+---
+---
+<section
+  class="relative min-h-screen flex items-center overflow-hidden"
+  style="background: var(--hero-bg, #0e0e13);"
+>
+  <!-- Layered background -->
+  <div class="absolute inset-0 bg-hero-glow" aria-hidden="true"></div>
+
+  <!-- Grid pattern overlay -->
+  <div
+    class="absolute inset-0 bg-grid-orange"
+    style="background-size: 60px 60px;"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Diagonal accent line -->
+  <div
+    class="absolute top-0 right-0 w-1/2 h-full opacity-20"
+    style="background: linear-gradient(135deg, transparent 40%, rgba(255,82,0,0.08) 100%);"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Orange vertical accent bar -->
+  <div
+    class="absolute top-0 left-0 w-1 h-full opacity-60"
+    style="background: linear-gradient(180deg, transparent, #ff5200 30%, #ffaa00 70%, transparent);"
+    aria-hidden="true"
+  ></div>
+
+  <div class="section-container relative z-10 py-32 md:py-40">
+    <div class="max-w-3xl">
+
+      <!-- Location badge -->
+      <div class="section-tag reveal">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/>
+        </svg>
+        Fuensalida, Toledo
+      </div>
+
+      <!-- Main headline -->
+      <h1
+        class="font-heading font-bold reveal"
+        style="font-size: clamp(2.6rem, 6vw, 4.5rem); line-height: 1.08; margin-bottom: 1.4rem; transition-delay: 0.1s;"
+      >
+        <span class="gradient-text-white">Expertos en tecnología,</span><br />
+        <span class="gradient-text">cerca de ti.</span>
+      </h1>
+
+      <!-- Subheadline -->
+      <p
+        class="reveal text-dpc-muted leading-relaxed"
+        style="font-size: clamp(1rem, 2.2vw, 1.2rem); max-width: 580px; margin-bottom: 2.2rem; transition-delay: 0.2s;"
+      >
+        Tu tienda de informática de confianza en la comarca de La Sagra.
+        Venta, reparación y servicio técnico para particulares y empresas,
+        desde 2012.
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-wrap gap-3 reveal" style="transition-delay: 0.3s;">
+        <a href="#servicios" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+          </svg>
+          <span>Ver servicios</span>
+        </a>
+        <a href="tel:925733019" class="btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+          </svg>
+          Llámanos ahora
+        </a>
+      </div>
+
+      <!-- Stats -->
+      <div
+        class="flex flex-wrap gap-6 md:gap-10 mt-12 pt-10 reveal"
+        style="border-top: 1px solid #28283c; transition-delay: 0.4s;"
+      >
+        {[
+          { num: '+12', label: 'Años de experiencia' },
+          { num: '100%', label: 'Presupuesto sin compromiso' },
+          { num: 'TPV', label: 'Soluciones para comercios' },
+        ].map((stat) => (
+          <div>
+            <div
+              class="font-heading font-bold gradient-text"
+              style="font-size: 2rem; line-height: 1;"
+            >
+              {stat.num}
+            </div>
+            <div
+              class="text-dpc-muted"
+              style="font-size: 0.82rem; margin-top: 0.25rem;"
+            >
+              {stat.label}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div
+    class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-40"
+    aria-hidden="true"
+  >
+    <span class="text-dpc-muted" style="font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; font-family: 'Rajdhani', sans-serif;">Scroll</span>
+    <div
+      class="w-px h-8"
+      style="background: linear-gradient(180deg, #7878a0, transparent);"
+    ></div>
+  </div>
+</section>

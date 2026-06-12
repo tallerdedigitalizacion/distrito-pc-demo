@@ -1,0 +1,108 @@
+---
+import { url } from '../utils/url';
+
+const reasons = [
+  {
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+    </svg>`,
+    title: '+12 años de experiencia',
+    desc: 'Desde diciembre de 2012 ayudando a familias y empresas de Fuensalida y la comarca de La Sagra.',
+  },
+  {
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    </svg>`,
+    title: 'Garantía en reparaciones',
+    desc: 'Trabajamos con componentes de calidad y garantizamos todos nuestros trabajos técnicos.',
+  },
+  {
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+    </svg>`,
+    title: 'Presupuesto sin compromiso',
+    desc: 'Antes de tocar nada, te explicamos qué tiene tu equipo y te damos un presupuesto claro y sin sorpresas.',
+  },
+  {
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+    </svg>`,
+    title: 'Trato cercano y personal',
+    desc: 'Somos de aquí. Conocemos las necesidades reales de los vecinos y los negocios locales.',
+  },
+];
+---
+
+<section
+  id="por-que-elegirnos"
+  class="py-20 md:py-28 relative overflow-hidden"
+  style="background: var(--dpc-surface2);"
+>
+  <div
+    class="absolute inset-0 opacity-30"
+    style="background: radial-gradient(ellipse at 80% 50%, rgba(255,82,0,0.1) 0%, transparent 60%);"
+    aria-hidden="true"
+  ></div>
+
+  <div class="section-container relative z-10">
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+
+      <div>
+        <div class="section-tag reveal">¿Por qué elegirnos?</div>
+        <h2
+          class="font-heading font-bold reveal"
+          style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1.2rem; transition-delay: 0.1s;"
+        >
+          La tecnología sin<br />
+          <span class="gradient-text">complicaciones.</span>
+        </h2>
+        <p
+          class="text-dpc-muted reveal"
+          style="font-size: 1.05rem; line-height: 1.75; max-width: 460px; margin-bottom: 2rem; transition-delay: 0.15s;"
+        >
+          Somos Distrito PC, una empresa familiar abierta en 2012 en Fuensalida.
+          Nos especializamos en atender a personas y negocios de la comarca con
+          soluciones tecnológicas reales, sin tecnicismos innecesarios y con el
+          trato de siempre.
+        </p>
+        <a href={url('/nosotros')} class="btn-secondary reveal" style="transition-delay: 0.2s;">
+          Conocernos mejor
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {reasons.map((r, i) => (
+          <div
+            class="reveal"
+            style={`
+              background: var(--dpc-surface);
+              border: 1px solid var(--dpc-border);
+              border-radius: 10px;
+              padding: 1.4rem;
+              transition-delay: ${0.08 * i}s;
+            `}
+          >
+            <div
+              class="text-dpc-orange mb-3"
+              style="width: 44px; height: 44px; background: rgba(255,82,0,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center;"
+              set:html={r.icon}
+            />
+            <h3
+              class="font-heading font-bold text-dpc-text"
+              style="font-size: 1.05rem; margin-bottom: 0.4rem;"
+            >
+              {r.title}
+            </h3>
+            <p class="text-dpc-muted" style="font-size: 0.88rem; line-height: 1.6;">
+              {r.desc}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,107 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { url } from '../utils/url';
+import '../styles/global.css';
+---
+
+<Layout
+  title="Contacto | Distrito PC — Fuensalida, Toledo"
+  description="Contacta con Distrito PC en Fuensalida (Toledo). Llámanos, escríbenos por WhatsApp o usa nuestro formulario. Te responderemos lo antes posible."
+  canonical="/contacto"
+>
+  <Header />
+  <main>
+
+    <section class="relative pt-32 pb-12 overflow-hidden" style="background: var(--dpc-surface);">
+      <div class="absolute inset-0 bg-grid-orange opacity-50" style="background-size: 50px 50px;" aria-hidden="true"></div>
+      <div class="section-container relative z-10">
+        <nav class="flex items-center gap-2 text-dpc-muted mb-6" style="font-size: 0.82rem;">
+          <a href={url('/')} class="hover:text-dpc-orange2 transition-colors">Inicio</a>
+          <span>›</span>
+          <span class="text-dpc-text">Contacto</span>
+        </nav>
+        <div class="section-tag">Contacto</div>
+        <h1 class="font-heading font-bold" style="font-size: clamp(2.2rem, 5vw, 3.5rem); margin-top: 0.5rem;">
+          Hablemos.<br /><span class="gradient-text">Estamos aquí.</span>
+        </h1>
+        <p class="text-dpc-muted mt-4" style="max-width: 500px; font-size: 1.05rem; line-height: 1.7;">
+          Escríbenos, llámanos o pásate por la tienda. Responderemos lo antes posible.
+        </p>
+      </div>
+    </section>
+
+    <section class="py-14 md:py-20" style="background: var(--dpc-black);">
+      <div class="section-container">
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-10">
+
+          <div class="lg:col-span-2 flex flex-col gap-5">
+            {[
+              {
+                icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>`,
+                label: 'Teléfono fijo', value: '925 73 30 19', href: 'tel:925733019',
+              },
+              {
+                icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/></svg>`,
+                label: 'Móvil / WhatsApp', value: '667 51 52 07', href: 'tel:667515207',
+              },
+              {
+                icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>`,
+                label: 'Consultas generales', value: 'consulta@distritopc.com', href: 'mailto:consulta@distritopc.com',
+              },
+              {
+                icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>`,
+                label: 'Servicio técnico', value: 'tecnico@distritopc.com', href: 'mailto:tecnico@distritopc.com',
+              },
+            ].map((c) => (
+              <a href={c.href} class="reveal flex items-start gap-4 rounded-xl p-4 transition-all" style="background: var(--dpc-surface); border: 1px solid var(--dpc-border);">
+                <div class="text-dpc-orange flex-shrink-0" style="width: 44px; height: 44px; background: rgba(255,82,0,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center;" set:html={c.icon} />
+                <div>
+                  <div class="text-dpc-muted" style="font-size: 0.78rem; text-transform: uppercase; font-family: 'Rajdhani', sans-serif; letter-spacing: 0.05em; margin-bottom: 0.15rem;">{c.label}</div>
+                  <div class="font-heading font-bold text-dpc-text" style="font-size: 1rem;">{c.value}</div>
+                </div>
+              </a>
+            ))}
+
+            <div class="reveal rounded-xl p-5" style="background: var(--dpc-surface); border: 1px solid var(--dpc-border);">
+              <h3 class="font-heading font-bold text-dpc-text" style="font-size: 1rem; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;">Dónde estamos</h3>
+              <p class="text-dpc-muted" style="font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem;">
+                C/ Juan de Ávila 4, local 2<br />45510 — Fuensalida (Toledo)
+              </p>
+              <a href="https://maps.google.com/?q=C/Juan+de+Avila+4,+Fuensalida,+Toledo" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="font-size: 0.82rem; padding: 0.45rem 1rem;">
+                Ver en Google Maps
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+              <div class="mt-4 pt-4 flex flex-col gap-1.5" style="border-top: 1px solid var(--dpc-border);">
+                <h4 class="font-heading font-bold text-dpc-text" style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.3rem;">Horario</h4>
+                {[
+                  ['Lun – Vie', '09:30 – 14:00 / 17:00 – 20:00'],
+                  ['Sábados',   '10:00 – 14:00'],
+                  ['Domingos',  'Cerrado'],
+                ].map(([d, h]) => (
+                  <div class="flex justify-between" style="font-size: 0.85rem;">
+                    <span class="text-dpc-muted">{d}</span>
+                    <span class="text-dpc-text">{h}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-3 reveal" style="background: var(--dpc-surface); border: 1px solid var(--dpc-border); border-radius: 14px; padding: clamp(1.5rem, 4vw, 2.5rem); transition-delay: 0.15s;">
+            <h2 class="font-heading font-bold text-dpc-text" style="font-size: 1.5rem; margin-bottom: 0.4rem;">Envíanos un mensaje</h2>
+            <p class="text-dpc-muted" style="font-size: 0.88rem; margin-bottom: 1.8rem;">Te responderemos en el menor tiempo posible, normalmente el mismo día.</p>
+            <ContactForm />
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+  <WhatsAppButton />
+</Layout>

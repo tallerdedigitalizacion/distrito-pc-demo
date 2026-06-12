@@ -1,0 +1,107 @@
+---
+import { url } from '../utils/url';
+
+const services = [
+  {
+    title: 'Reparación y Actualización',
+    desc: 'Diagnóstico y reparación de PCs, portátiles y tablets. Actualizamos tus equipos con nuevos componentes sin pérdida de datos.',
+    icon: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+    </svg>`,
+    href: url('/servicio-tecnico'),
+  },
+  {
+    title: 'Venta de Equipos',
+    desc: 'Ordenadores de sobremesa, portátiles, tablets y componentes de las mejores marcas. Nuevos y reacondicionados certificados.',
+    icon: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>`,
+    href: url('/informatica'),
+  },
+  {
+    title: 'Informática para Empresas',
+    desc: 'Instalación y mantenimiento de redes, sistemas TPV con lector de código de barras, software de gestión sectorial y soporte integral.',
+    icon: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+    </svg>`,
+    href: url('/empresas'),
+  },
+  {
+    title: 'Asistencia Técnica Remota',
+    desc: 'Instalación de drivers, configuración de impresoras, eliminación de virus y actualizaciones. Lo resolvemos sin que muevas el equipo.',
+    icon: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor"/>
+    </svg>`,
+    href: url('/servicio-tecnico'),
+  },
+  {
+    title: 'Seguridad y Nube',
+    desc: 'Copias de seguridad automáticas, acceso remoto a tus datos desde cualquier dispositivo y auditorías de seguridad para tu negocio.',
+    icon: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
+    </svg>`,
+    href: url('/empresas'),
+  },
+  {
+    title: 'Consumibles',
+    desc: 'Cartuchos y tóneres originales y compatibles para todas las marcas de impresoras. También smartphones y accesorios de gama media-alta.',
+    icon: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+    </svg>`,
+    href: url('/informatica'),
+  },
+];
+---
+
+<section id="servicios" class="py-20 md:py-28" style="background: var(--dpc-surface);">
+  <div class="section-container">
+
+    <div class="text-center mb-14">
+      <div class="section-tag reveal" style="display: inline-flex;">Servicios</div>
+      <h2
+        class="font-heading font-bold reveal"
+        style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; transition-delay: 0.1s;"
+      >
+        ¿Qué podemos hacer<br />
+        <span class="gradient-text">por ti?</span>
+      </h2>
+      <p
+        class="text-dpc-muted reveal"
+        style="max-width: 540px; margin: 0 auto; font-size: 1.05rem; transition-delay: 0.15s;"
+      >
+        Desde la venta de equipos hasta el mantenimiento de redes empresariales,
+        te cubrimos en todo lo relacionado con la tecnología.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {services.map((s, i) => (
+        <a
+          href={s.href}
+          class="service-card reveal block no-underline"
+          style={`transition-delay: ${0.05 * i}s;`}
+        >
+          <div class="service-icon text-dpc-orange" set:html={s.icon} />
+          <h3
+            class="font-heading font-bold text-dpc-text"
+            style="font-size: 1.25rem; margin-bottom: 0.5rem;"
+          >
+            {s.title}
+          </h3>
+          <p class="text-dpc-muted" style="font-size: 0.9rem; line-height: 1.65;">
+            {s.desc}
+          </p>
+          <div
+            class="flex items-center gap-1 mt-4 text-dpc-orange2"
+            style="font-family: 'Rajdhani', sans-serif; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;"
+          >
+            Saber más
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
